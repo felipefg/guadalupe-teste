@@ -1,0 +1,62 @@
+/* Neural TB Project - Main style */
+
+body
+{
+	font-family: Verdana, Arial;
+	font-size: 10pt;
+	background-color: #CDCDCD;
+}
+
+body table
+{
+	width: 100%;
+	font-size: 10pt;
+}
+
+tr
+{
+	text-align: left;
+}
+
+th
+{
+	background-color: #FFFF99;
+	text-align: center;
+	font: 10pt;
+}
+
+.title4
+{
+	text-align: center;
+}
+
+.h4
+{
+	font-size: 8pt;
+	line-height: 2;
+	padding: 2px 2px 2px 5px;
+}
+
+.ajuda
+{
+	background-color: white;
+}
+
+.under_menu
+{
+	padding: 10 10 10 10; /* 30 10 10 10 if menu has a position:fixed config */
+}
+
+.left	{text-align: left}
+.center	{text-align: center}
+.right	{text-align: right}
+
+.top	{vertical-align: top}
+.middle	{vertical-align: middle}
+.bottom	{vertical-align: bottom}
+
+.bold	{font-weight: bold}
+
+a:link {color: blue; text-decoration: underline}
+a:visited {color: blue; text-decoration: underline}
+a:hover {color: red; text-decoration: none;}

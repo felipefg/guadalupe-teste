@@ -1,0 +1,31 @@
+<html>
+<head>
+	<title>Neural TB - Ajuda!</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+
+<body class="ajuda">
+	<h2>Ajuda!</h2>
+	<p>+ DATAS: Todas as datas est&atilde;o validadas quanto ao calend&aacute;rio.</p>
+	<p>+ IDADE: Será preenchida automaticamente ao ser informada a DATA DE NASCIMENTO do paciente. 
+	Caso o mesmo não se lembre, clicar no botão "O paciente não sabe especificar" para inserir a idade
+	aproximada do paciente.</p>
+	<p>+ RESULTADO: De acordo com as respostas em "SINAIS E SINTOMAS", além de estar relacionado com o peso e a idade
+	como foi pedido no formulário original, o botão devolve o número de pontos. As respostas: "POSSUI TB" ou "NÃO TB"
+	n&atilde;o ser&aacute; mostrada devido a possibilidade de altera&ccedil;&otilde;es na interpreta&ccedil;&atilde;o do resultado.</p>
+	<p>+ HORA: Deve ser preenchida no formato 24 horas, sendo o campo da ESQUERDA para HORAS e o da DIREITA para 
+	MINUTOS.</p>
+	<p>+ R$: Por enquanto, pode-se apenas incluir valores inteiros.</p>
+	<p>+ PORCENTAGEM: Os campos que envolvem PORCENTAGEM apenas poderão receber valores de 0 a 100.</p>
+	<p>+ "Outros": Será permitido apenas a entrada de dados nesses campos se os mesmos forem selecionados.</p>
+	<p>+ ENVIAR FORMULÁRIO: A CGI ativada pelo primeiro formulario (Criterio Inicial de Triagem) cria, se nao
+	existe, um arquivo XML e adiciona os dados iniciais do paciente. Os outros 4 formul&aacute;rios apesar de estarem 
+	parcialmente validados, nao tem acao alguma, sendo prevista a criacao de outras CGIs para inclusao de dados 
+	a pacientes ja existentes (A CGI em vigor nao faz qualquer validacao de entrada de dados, portanto pacientes
+	com mesmo Numero Geral podem ser incluidos no arquivo.).A CGI cria tb um arquivo em XML de apenas um paciente,
+	que consta o ultimo paciente adicionado para visualizacao apos inclusao.</p>
+	<p>+ LIMPAR FORMULÁRIO: Apaga todos os campos preenchidos no formulário.</p>
+	<p><a href="#" onclick="window.close()">Fechar</a></p>
+	
+</body>
+</html>

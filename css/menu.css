@@ -1,0 +1,78 @@
+/* Neural TB Project - Menu style */
+
+#menu
+{
+	background-color: #eeeeee;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	
+	/*position:absolute;*//* problems with IE6 */
+	/*position:fixed;*//* problems with scrolling */
+	/*left: 0;
+	top: 0;*//* needed if postion is defined */
+}
+
+
+#menu td
+{
+	font-family: Arial, Verdana;
+	font-size: 10pt;
+	margin: 0;
+	padding: 1;
+}
+
+.fl {float:left}
+.fr {float:right}
+
+#menu a
+{
+	padding: 2 5 2 5;
+}
+
+#menu a:link	{color: blue; text-decoration: underline; /*border: 1px solid #eeeeee;*/}
+#menu a:visited {color: blue; text-decoration: underline; /*border: 1px solid #eeeeee;*/}
+#menu a:hover {color: blue; text-decoration: none; background-color: #cdcdcd; /*border: 1px solid black;*/}
+
+#menu .active
+{
+	background-color: #FFFF99;
+	padding: 1 5 1 5;
+}
+
+#menu a.active:link {color: blue; text-decoration: none}
+#menu a.active:visited {color: blue; text-decoration: none}
+
+#menu .option /* applied to a <ul> element */
+{
+	background-color: #eeeeee;
+	margin: 0;
+	padding: 6 0 0 0;
+	list-style:none;
+	position:absolute;
+	/*position:fixed;
+	top:0;
+	left:0;*//* scroll does not affect this mode, but a correct position must be specified*/
+	/* this is only a suggestion to solve the scroll problem. DHTML is another one... */
+	visibility:hidden;
+}
+
+#menu .option li
+{
+	border-left: 5px solid #FFFF99;
+}
+
+#menu li a
+{
+	display: block;
+	width: 100%;
+	/*voice-family: "\"}\"";
+    voice-family: inherit;
+	width: auto;*/
+}
+
+html>body #menu li a {width: auto}
+
+#menu li a:link {color: blue; text-decoration: none}
+#menu li a:visited {color: blue; text-decoration: none}
+#menu li a:hover {color: blue; text-decoration: none; background-color: #FFFF99}

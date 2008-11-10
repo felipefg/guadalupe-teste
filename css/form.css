@@ -1,0 +1,31 @@
+/* Neural TB Project - Form style */
+
+form td
+{
+	vertical-align: middle;
+	font-size: 8pt;
+	line-height: 2;
+	padding: 2px 5px 2px 5px;
+	white-space: nowrap;
+}
+
+input
+{
+	font-family: Verdana, Arial;
+	font-size: 10pt;
+}
+
+.tabela	{ width: 800px}
+.impar	{ background-color: #66CCFF} /* #66CCFF */
+.par	{ background-color: #C0D9D9} /* #C0D9D9 */
+
+.custo	{ /*background-color: #336699;*/ border:1px solid #336699; color: black;} /*color:#3366CC; background-color:#66CCFF  */
+.label	{ background-color: #FFFF99; text-indent: 10px}
+
+input[type="text"].preco {text-align:right}
+
+.custo td {/*border-bottom: 1px solid black;*/}
+
+.wrap {white-space:normal}
+
+.referencia {border: 1px solid black}

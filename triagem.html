@@ -1,0 +1,909 @@
+<html>
+<head>
+	<title>NeuralTB - Preencha todos os campos do formul&aacute;rio abaixo</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/menu.css">
+	<link rel="stylesheet" type="text/css" href="css/form.css">
+	<script language=javascript src="js/funcoes.js"></script>
+	<script language=javascript src="js/const_outros.js"></script>
+
+	<script language=javascript src="js/validar.js"></script>
+	<script>
+	
+
+	function inicializaOcultos(tabela)
+	{
+		document.getElementById(tabela).rows[11].style.display = "none";//anos no rio
+		document.getElementById(tabela).rows[14].style.display = "none";//raca II
+		document.getElementById(tabela).rows[15].style.display = "none";//raca II
+		document.getElementById(tabela).rows[28].style.display = "none";//Quantidade Hemoptise
+		document.getElementById(tabela).rows[38].style.display = "none";//Data diagnostico TB
+		document.getElementById(tabela).rows[39].style.display = "none";//Desfecho TB
+		document.getElementById(tabela).rows[40].style.display = "none";//Desfecho TB
+		document.getElementById(tabela).rows[46].style.display = "none";//Morava junto
+		document.getElementById(tabela).rows[47].style.display = "none";//Trabalhava junto
+		document.getElementById(tabela).rows[48].style.display = "none";//Amigo/parente/colega
+		document.getElementById(tabela).rows[49].style.display = "none";//Contato < 3 anosvalidarDia(campoDia)
+		document.getElementById(tabela).rows[50].style.display = "none";//Especifica contato
+		document.getElementById(tabela).rows[52].style.display = "none";//Numero de cigarros/dia
+		document.getElementById(tabela).rows[53].style.display = "none";//Numero de anos fumando
+		document.getElementById(tabela).rows[56].style.display = "none";//Facilidade em fazer amizades
+		document.getElementById(tabela).rows[57].style.display = "none";//Sentiu que deve diminuir
+		document.getElementById(tabela).rows[58].style.display = "none";//Alguem criticou o modo de beber
+		document.getElementById(tabela).rows[59].style.display = "none";//Bebe para diminuir nervosismo
+		document.getElementById(tabela).rows[60].style.display = "none";//Se sente culpado por beber
+		document.getElementById(tabela).rows[65].style.display = "none";//criterios
+		document.getElementById(tabela).rows[66].style.display = "none";//coleta
+		document.getElementById(tabela).rows[67].style.display = "none";//coleta
+		document.getElementById(tabela).rows[68].style.display = "none";//coleta
+		document.getElementById(tabela).rows[69].style.display = "none";//cicatriz bcg
+		document.getElementById(tabela).rows[70].style.display = "none";//resultado
+		document.getElementById(tabela).rows[71].style.display = "none";//Data da aplicacao
+		document.getElementById(tabela).rows[72].style.display = "none";//Data da leitura
+		document.getElementById(tabela).rows[73].style.display = "none";//PT 1a dose
+	}
+	
+	function desabilitarRadio (name,num)
+	{
+		for(indice=0;indice<num;indice++)
+			name[indice].disabled = true;
+	}
+	
+	</script>
+
+</head>
+
+<body  onLoad="inicializaOcultos('tabelaSintomas')">
+<table border="0" id="menu"><tr>	<td>		<table border="0">		<tr><td class="fl" onmouseover="showmenu('forms')" onmouseout="hidemenu('forms')">
+<a href="#">Formulários</a><br />
+<ul class="option" id="forms">
+
+	<li><a href="triagem.cgi?uid=anonimo" target="_parent">Triagem</a></li>
+	<li><a href="busca.cgi?uid=anonimo" target="_parent">Outros Formulários</a></li>
+</ul>
+</td>
+			<td class="fl"><a href="busca.cgi?uid=anonimo" target="_parent">Buscar/Editar/Remover</a></td>			<td class="fl"><a href="listar.cgi?uid=anonimo" target="_parent">Listar Pacientes</a></td>			<td class="fl"><a href="backup.cgi">Backup</a></td>			<td class="fl"><a style="cursor:help" href="ajuda.html" target="_blank">Ajuda</a></td>		</tr>		</table>	</td>	<td>		<table border="0">		<tr>			<td class="fr"><i>anonimo</i> conectado | <a href="logout.cgi">Sair</a></td>		</tr>		</table>	</td></tr></table>
+
+<table border="0">
+<tr>	
+	
+	<td class="under_menu">
+	<img src="images/CriterioInicialTriagem.jpg" /><br />
+
+	
+	<!--onSubmit="return enviar()"-->
+	
+	<!--------------------------------------------------------- INICIO DO FORMULARIO ------------------------------------------------------------------->
+	<form name="check" id="form" action="addPatient.cgi" method="post" onSubmit="return validar_triagem(this)">
+
+		<input type="hidden" name="form" value="triagem" />
+		<div align="center">
+
+		<br /><br />
+		
+		<!-- Alteracao para inclusao dos pacientes jah existentes -->
+		
+		<!-- <div style="font-size:10pt;"><b>N&#186; Geral (TB Adapt): <span style="color:#fff">Autom&aacute;tico</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data de inclusao: <span id="date" style="color:#fff"><script>putDate();</script></span></div>
+		<br /> -->
+		
+		<!-- ******************************************* -->
+
+		
+		<div style="font-size:10pt;"><b>N&#186; Geral (TB Adapt): <input maxlength="6" size="6" name="numeroGeral">
+
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+		Data de inclus&atilde;o:<input maxlength="2" size="2" name="dia_inclusao" onKeyUp="if(this.value.length == 2)mes_inclusao.focus();" onBlur="validarDia(this)">&nbsp;/
+								<input maxlength="2" size="2" name="mes_inclusao" onKeyUp="if(this.value.length == 2)ano_inclusao.focus();" onBlur="validarMes(this)">&nbsp;/
+								<input maxlength="4" size="4" name="ano_inclusao" onKeyUp="if(this.value.length == 4)nomeCompleto.focus();" onBlur="validarAno(this); validarQualquerData(dia_inclusao,mes_inclusao,ano_inclusao);">&nbsp; dd/mm/aaaa<br><br>
+		
+		<!-- ******************************************* -->
+
+		
+		<table cellspacing="0" cellpadding="0" class="tabela" id="tabelaSintomas" border="0">
+			
+			<!--    NOME     --> 
+			<tr class="impar">
+			
+			<!-- definicao da largura dos titulos: 30%, "pressionando" o resto contra o canto direito da tabela -->
+
+			
+				<td width="30%"><script>document.write(tabFields[0][1]);</script>:</td>
+				<td colspan="4"><input maxlength="60" size="42" name="nomeCompleto"/></td>
+			</tr>
+			
+			<!--    NOME DA MAE    -->
+
+			<tr class="par">
+				<td><script>document.write(tabFields[1][1]);</script>:</td>
+
+				<td colspan="4"><input maxlength="60" size="42" name="nomeMae"></td>
+			</tr>
+			
+			<!--    ENDERECO    --> 
+			<tr class="impar">
+				<td><script>document.write(tabFields[2][1]);</script>:</td>
+				<td colspan="4" ><input maxlength="60" size="42" name="endereco"></td>
+			</tr>
+			
+			<!--    PONTO DE REFERENCIA    -->
+
+			<tr class="par">
+				<td style="white-space: normal"><script>document.write(tabFields[3][1]);</script>:</td>
+				<td colspan="4" ><input type="text" maxlength="60" size="42" name="ptoReferencia"></td>
+			</tr>			
+
+			<!-- BAIRRO / CEP -->
+
+			<tr class="impar">
+				<td><script>document.write(tabFields[4][1]);</script>:</td>
+
+				<td colspan="2" ><input type="text" maxlength="30" size="20" name="bairro"></td>
+				<td colspan="2"><script>document.write(tabFields[5][1]);</script>: <input  type="text" maxlength="5" size="5" name="cep1" onKeyUp ="if(cep1.value.length == 5)cep2.focus(); " onBlur="validarCampoNumerico(this)"> - <input maxlength="3" size="2" name="cep2" onKeyUp ="if(cep2.value.length == 3)cidade.focus(); "  onBlur="validarCampoNumerico(this)">
+					<input type="checkbox" onClick="if(this.checked){cep1.disabled=true;cep2.disabled=true;} else{cep1.disabled=false;cep2.disabled=false;}"> <i>O paciente n&atilde;o lembra.</i></td>
+			</tr>
+			
+			<!--    CIDADE    -->
+
+			<tr class="par">
+				<td><script>document.write(tabFields[6][1]);</script>:</td>
+				<td  colspan="4" ><input type="text" maxlength="60" size="42" name="cidade"></td>
+			</tr>			
+
+			<!-- TELEFONE/CELULAR -->
+			<tr class="impar">
+
+				<td><script>document.write(tabFields[7][1]);</script>:</td>
+
+				<td colspan="2" ><input maxlength="8" size="8" name="fone" onBlur="validarCampoNumerico(this)"  onKeyUp="if(fone.value.length == 8) cel.focus();" >
+				<input type="checkbox" onClick="if(this.checked){fone.disabled=true;} else{fone.disabled=false;}" ><i> O paciente n&atilde;o possui.</i></td>
+				<td colspan="2" ><script>document.write(tabFields[8][1]);</script>:<input maxlength="8" size="8" name="cel" onBlur="validarCampoNumerico(this)" onKeyUp="if(this.value.length == 8) foneContato.focus();">
+				<input type="checkbox" onClick="if(this.checked){cel.disabled=true;} else{cel.disabled=false;}"><i> O paciente n&atilde;o possui.</i></td>
+
+			</tr>
+			
+			<!-- CONTATO -->
+			<tr class="par">
+				<td><script>document.write(tabFields[9][1]);</script>:</td>
+				<td colspan="1" ><input maxlength="8" size="8" name="foneContato" onBlur="validarCampoNumerico(this)" onKeyUp="if(this.value.length == 8) nomeContato.focus();"></td>
+				<td colspan="3" ><script>document.write(tabFields[10][1]);</script>: <input maxlength="30" size="10" name="nomeContato">
+				<input type="checkbox" onClick="if(this.checked){foneContato.disabled=true;nomeContato.disabled=true;} else{foneContato.disabled=false;nomeContato.disabled=false;}"><i> O paciente n&atilde;o possui.</i></td>
+
+			</tr>
+			
+			<!--    DATA DE NASCIMENTO    -->
+			<tr class="impar">
+				<td><script>document.write(tabFields[11][1]);</script>:</td>
+				<td colspan="2"><input name="dia_nascimento" TYPE="text"  SIZE="2" maxlength="2" onKeyUp="if(this.value.length == 2)this.blur();" onChange="if(validarDia(this))if(mes_nascimento.value != '' && ano_nascimento.value != ''){if(validarData(document.check))idade.value = calcularIdade(dia_nascimento.value, mes_nascimento.value, ano_nascimento.value)}else mes_nascimento.focus();"> / <input name="mes_nascimento" type="text" size="2" maxlength="2" onKeyUp="if(this.value.length == 2)this.blur();" onChange="if(validarMes(this))if(dia_nascimento.value != '' && ano_nascimento.value != ''){if(validarData(document.check))idade.value = calcularIdade(dia_nascimento.value, mes_nascimento.value, ano_nascimento.value)}else ano_nascimento.focus();"> / <input name="ano_nascimento" type="text" size="4" maxlength="4" onKeyUp="if(this.value.length == 4)naturalidadeEstado.focus();" onChange="if(validarAno(this))if(validarDia(dia_nascimento) && validarMes(mes_nascimento))if(validarData(document.check))idade.value = calcularIdade(dia_nascimento.value, mes_nascimento.value, ano_nascimento.value)"> <span style="font-size: 7pt">dd/mm/aaaa</span></td>
+
+				<td colspan="2" style="font-size: 7pt"><input type="checkbox" id="habilita_idade" onClick="habilitaIdade(document.check)"> O paciente n&atilde;o sabe especificar</td>
+			</tr>
+
+			<!--    IDADE    -->
+
+			<tr class="par">
+				<td><span id="aproximadamente"><script>document.write(tabFields[14][1]);</script>:</span></td>
+
+				<td colspan="4"><input type="text" maxlength="3" size="3" name="idade" id="idade" readonly="readOnly" onBlur="if(this.value != '')if(validarIdade(this))ano_nascimento.value = calcularAnoNascimento(this.value);"> anos</td>
+			</tr>
+
+			<!--     NATURALIDADE     -->
+
+			<tr class="impar">
+				<td><script>document.write(tabFields[15][1]);</script>:</td>
+				<td colspan="4">
+
+					<select name="naturalidadeEstado" >
+						<option selected value=""></option>
+						<option value="AC">AC</option>
+						<option value="AL">AL</option>
+						<option value="AM">AM</option>
+						<option value="AP">AP</option>
+						<option value="BA">BA</option>
+
+						<option value="CE">CE</option>
+						<option value="ES">ES</option>
+						<option value="GO">GO</option>
+						<option value="MA">MA</option>
+						<option value="MG">MG</option>
+						<option value="MS">MS</option>
+
+						<option value="MT">MT</option>
+						<option value="PA">PA</option>
+						<option value="PB">PB</option>
+						<option value="PE">PE</option>
+						<option value="PI">PI</option>
+						<option value="PR">PR</option>
+
+						<option value="RJ">RJ</option>
+						<option value="RN">RN</option>
+						<option value="RO">RO</option>
+						<option value="RR">RR</option>
+						<option value="RS">RS</option>
+						<option value="SC">SC</option> 
+						<option value="SE">SE</option>
+
+						<option value="SP">SP</option>
+						<option value="TO">TO</option>
+					</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<script>document.write(tabFields[16][1]);</script>:<input type="text" name="naturalidadeCidade" size="40" maxlength="80" onBlur="if(naturalidade(naturalidadeEstado, this) == false){exibeLinhaOculta('tabelaSintomas', 11); naturalidadeAnosRio.disabled = false;  this.value = this.value.toUpperCase(); naturalidadeAnosRio.focus();} else {ocultaLinha('tabelaSintomas', 11);naturalidadeAnosRio.value = ''; naturalidadeAnosRio.disabled = true; this.value = this.value.toUpperCase();}">
+				</td>
+			</tr>
+
+			<!-- Numero de anos no Rio de Janeiro -->
+
+				<tr class="impar">
+				<td><script>document.write(tabFields[17][1]);</script>:</td>
+				<td colspan="4"><input type="text" name="naturalidadeAnosRio" maxlength="3" size="3" onBlur="validarCampoNumerico(this);validarTempo(this);"/> anos</td>
+
+			</tr>
+			
+			<!--    SEXO     -->
+
+			<tr class="par">
+				<td><script>document.write(tabFields[18][1]);</script>:</td>
+				<td><input name="sexo" type="radio" value="masculino"> Masculino</td>
+				<td><input name="sexo" type="radio" value="feminino"> Feminino</td>
+				<td><input name="sexo" type="radio" value="ignorado"> Ignorado</td>
+
+				<td></td>
+			</tr>
+			
+			<!--    RACA   I  -->
+
+			<tr class="impar">
+				<td><script>document.write(tabFields[19][1]);</script>:</td>
+				<td><input name="raca1" type="radio" value="branco" onclick="ocultaLinha('tabelaSintomas', 14); ocultaLinha('tabelaSintomas', 15);"> Branco</td>
+
+				<td colspan="3"><input name="raca1" type="radio" value="nao-branco" onclick="exibeLinhaOculta('tabelaSintomas', 14);exibeLinhaOculta('tabelaSintomas', 15);"> N&atilde;o-branco</td>
+			</tr>		
+			
+			<!--    RACA  II caso nao-branco   -->
+
+			<tr class="impar">
+				<td><script>document.write(tabFields[20][1]);</script>:</td>
+				<td><input  name="raca2" type="radio" value="negro"> Negro</td>
+
+				<td><input  name="raca2" type="radio" value="mulato"> Mulato</td>
+				<td><input  name="raca2" type="radio" value="indio"> &Iacute;ndio</td>
+				<td></td>
+			</tr>
+
+			<tr class="impar">
+				<td></td>
+
+				<td><input  name="raca2" type="radio" value="asiatico"> Asi&aacute;tico</td>
+				<td><input  name="raca2" type="radio" value="NA"> NA</td>
+				<td><input  name="raca2" type="radio" value="nao_sabe"> N&atilde;o sabe</td>
+				<td></td>
+			</tr>
+
+			
+			<!--    ESTADO CIVIL     -->
+
+			<tr class="par">
+				<td><script>document.write(tabFields[21][1]);</script>:</td>
+				<td><input name="estadoCivil" type="radio" value="casado"> Casado</td>
+				<td><input name="estadoCivil" type="radio" value="solteiro"> Solteiro</td>
+
+				<td><input name="estadoCivil" type="radio" value="separado"> Separado
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="estadoCivil" type="radio" value="viuvo"> Vi&uacute;vo</td>
+				<td></td>
+			</tr>
+
+			<!--    COMPANHEIRO     -->
+
+			<tr class="impar">
+
+				<td><script>document.write(tabFields[22][1]);</script>:</td>
+				<td><input name="companheiro" type="radio" value="sim"> Sim</td>
+				<td><input name="companheiro" type="radio" value="nao"> N&atilde;o</td>
+				<td><input name="companheiro" type="radio" value="ignorado"> Ignorado</td>
+
+				<td></td>
+			</tr>
+			
+			<!--    PESO HABITUAL     -->
+
+			<tr class="par">
+				<td><script>document.write(tabFields[23][1]);</script>:</td>
+				<td><input  name="pesoHabitual" type="text" size="6" maxlength="5" onBlur="validarCampoPeso(this); pesoHabitual.value = arredondarNcasasDecimais(pesoHabitual.value,1);"> kg</td>
+
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			
+			<!--    PESO ATUAL     -->
+
+			<tr class="impar">
+				<td><script>document.write(tabFields[24][1]);</script>:</td>
+
+				<td><input name="pesoAtual" type="text" size="6" maxlength="5" onBlur="if(altura.value != '') imc.value = (this.value / Math.pow(altura.value, 2))*10000; perdaPeso(document.check.pesoHabitual.value,document.check.pesoAtual.value); validarCampoPeso(this); pesoAtual.value = arredondarNcasasDecimais(pesoAtual.value,1);"/> kg</td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+
+			<!--    PERDA DE PESO   -->
+
+			<tr class="par">
+
+				<td><script>document.write(tabFields[25][1]);</script> (> 10%):</td>
+				<td><input name="perdaDePeso" type="text" size="2" readOnly="readOnly">
+ 				<td colspan="3">Semanas: <input type="text" name="perdaDePeso_semanas" size="2" maxlength="2"/></td>
+			</tr>
+
+			<!--    ALTURA   -->
+
+			<tr class="impar">
+
+				<td><script>document.write(tabFields[26][1]);</script>:</td>
+				<td><input  name="altura" type="text" size="5" maxlength="3" onBlur="imc.value = (pesoAtual.value / Math.pow(this.value, 2))*10000; imc.value = arredondarNcasasDecimais(imc.value,3);  validarCampoNumerico(this)"/> cm</td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+
+			<!--    IMC   -->
+
+			<tr class="par">
+				<td><script>document.write(tabFields[27][1]);</script>:</td>
+				<td><input  name="imc" type="text" size="5" readonly="readOnly"> kg/m&#178;</td>
+				<td></td>
+				<td></td>
+
+				<td></td>
+			</tr>
+
+			<tr>
+				<td colspan="5" class="label"><b>Sinais e sintomas</b></td>
+			</tr>
+
+			<!--    TOSSE    -->
+
+			<tr class="par">
+
+				<td><script>document.write(tabFields[28][1]);</script>:</td>
+				<td><input name="tosse" type="radio" value="sim" onClick="tosse_semanas.disabled = false; tosse_semanas.value=''; tosse_semanas.focus();"> Sim</td>
+				<td><input name="tosse" type="radio" value="nao" onClick="tosse_semanas.disabled = true;"> N&atilde;o</td>
+				<td><input name="tosse" type="radio" value="ignorado" onClick="tosse_semanas.disabled = true;"> Ignorado</td>
+
+				<td class="right"><script>document.write(tabFields[29][1]);</script>: <input type="text" name="tosse_semanas" size="2" maxlength="2" onBlur="validarCampoNumerico(this)"></td>
+			</tr>
+			
+			<!--    EXPECTORACAO    -->
+
+			<tr class="impar">
+				<td><script>document.write(tabFields[30][1]);</script>:</td>
+				<td><input name="expectoracao" type="radio" value="sim" onClick="expectoracao_semanas.disabled = false; expectoracao_semanas.value=''; expectoracao_semanas.focus();"> Sim</td>
+
+				<td><input name="expectoracao" type="radio" value="nao" onClick="expectoracao_semanas.disabled = true;"> N&atilde;o</td>
+				<td><input name="expectoracao" type="radio" value="ignorado" onClick="expectoracao_semanas.disabled = true;"> Ignorado</td>
+				<td class="right"><script>document.write(tabFields[31][1]);</script>: <input type="text" name="expectoracao_semanas" size="2" maxlength="2" onBlur="validarCampoNumerico(this)"/></td>
+			</tr>
+
+			<!--    HEMOPTOICO   -->
+
+			<tr class="par">
+				<td><script>document.write(tabFields[32][1]);</script>:</td>
+				<td><input name="hemoptoico" type="radio" value="sim" onClick="hemoptoico_semanas.disabled = false; hemoptoico_semanas.value=''; hemoptoico_semanas.focus();"> Sim</td>
+				<td><input name="hemoptoico" type="radio" value="nao" onClick="hemoptoico_semanas.disabled = true;"> N&atilde;o</td>
+				<td><input name="hemoptoico" type="radio" value="ignorado" onClick="hemoptoico_semanas.disabled = true;"> Ignorado</td>
+
+				<td class="right"><script>document.write(tabFields[33][1]);</script>: <input type="text" name="hemoptoico_semanas" size="2" maxlength="2" onBlur="validarCampoNumerico(this)"/></td>
+			</tr>
+
+			<!--    HEMOPTISE   -->
+
+			<tr class="impar">
+				<td><script>document.write(tabFields[34][1]);</script>:</td>
+				<td><input name="hemoptise" type="radio" value="sim" onClick="exibeLinhaOculta('tabelaSintomas', 28); hemoptise_semanas.disabled = false; hemoptise_semanas.value=''; hemoptise_semanas.focus();"> Sim</td>
+
+				<td><input name="hemoptise" type="radio" value="nao" onClick="ocultaLinha('tabelaSintomas', 28); hemoptise_semanas.disabled = true;"> N&atilde;o</td>
+				<td><input name="hemoptise" type="radio" value="ignorado" onClick="ocultaLinha('tabelaSintomas', 28); hemoptise_semanas.disabled = true;"> Ignorado</td>
+				<td class="right"><script>document.write(tabFields[35][1]);</script>: <input type="text" name="hemoptise_semanas" size="2" maxlength="2" onBlur="validarCampoNumerico(this)"></td>
+			</tr>
+			
+			<!-- Quantidade de hemoptise -->
+
+			
+			<tr class="impar">
+				<td><script>document.write(tabFields[36][1]);</script>:</td>
+				<td style="font-size: 8pt"><input  name="hemoptiseQtd" type="radio" value="menor_cafe"> &lt; copinho caf&eacute;</td>
+				<td style="font-size: 8pt"><input  name="hemoptiseQtd" type="radio" value="maior_cafe"> &gt; copinho caf&eacute;</td>
+				<td style="font-size: 8pt" colspan="2"><input name="hemoptiseQtd" type="radio" value="maiorigual_geleia"> &ge; copo gel&eacute;ia</td>
+
+			</tr>
+		
+			<!--    SUDORESE NOTURNA   -->
+
+			<tr class="par">
+				<td><script>document.write(tabFields[37][1]);</script>:</td>
+
+				<td><input name="sudorese" type="radio" value="sim" onClick="sudorese_semanas.disabled = false; sudorese_semanas.value=''; sudorese_semanas.focus();"> Sim</td>
+				<td><input name="sudorese" type="radio" value="nao" onClick="sudorese_semanas.disabled = true;"> N&atilde;o</td>
+
+				<td><input name="sudorese" type="radio" value="ignorado" onClick="sudorese_semanas.disabled = true;"> Ignorado</td>
+				<td class="right"><script>document.write(tabFields[38][1]);</script>: <input type="text" name="sudorese_semanas" size="2" maxlength="2" onBlur="validarCampoNumerico(this)"/></td>
+			</tr>
+			
+			<!--    FEBRE   -->
+
+			<tr class="impar">
+				<td><script>document.write(tabFields[39][1]);</script>:</td>
+
+				<td><input name="febre" type="radio" value="sim" onClick="febre_semanas.disabled = false; febre_semanas.value=''; febre_semanas.focus();"> Sim</td>
+				<td><input name="febre" type="radio" value="nao" onClick="febre_semanas.disabled = true;"> N&atilde;o</td>
+				<td><input name="febre" type="radio" value="ignorado" onClick="febre_semanas.disabled = true;"> Ignorado</td>
+				<td class="right"><script>document.write(tabFields[40][1]);</script>: <input type="text" name="febre_semanas" size="2" maxlength="2" onBlur="validarCampoNumerico(this)"/></td>
+
+			</tr>
+			
+			<!--    DISPNEIA   -->
+
+			<tr class="par">
+				<td><script>document.write(tabFields[41][1]);</script>:</td>
+				<td><input name="dispneia" type="radio" value="sim" onClick="dispneia_semanas.disabled = false; dispneia_semanas.value=''; dispneia_semanas.focus();"> Sim</td>
+				<td><input name="dispneia" type="radio" value="nao" onClick="dispneia_semanas.disabled = true;"> N&atilde;o</td>
+
+				<td><input name="dispneia" type="radio" value="ignorado" onClick="dispneia_semanas.disabled = true;"> Ignorado</td>
+				<td class="right"><script>document.write(tabFields[42][1]);</script>: <input type="text" name="dispneia_semanas" size="2" maxlength="2" onBlur="validarCampoNumerico(this)"/></td>
+			</tr>
+
+			
+			<!--    PERDA DO APETITE   -->
+
+			<tr class="impar">
+				<td><script>document.write(tabFields[43][1]);</script>:</td>
+
+				<td><input name="perdaApetite" type="radio" value="sim" onClick="perdaApetite_semanas.disabled = false; perdaApetite_semanas.value=''; perdaApetite_semanas.focus();"> Sim</td>
+				<td><input name="perdaApetite" type="radio" value="nao" onClick="perdaApetite_semanas.disabled = true;"> N&atilde;o</td>
+				<td><input name="perdaApetite" type="radio" value="ignorado" onClick="perdaApetite_semanas.disabled = true;"> Ignorado</td>
+				<td class="right"><script>document.write(tabFields[44][1]);</script>: <input type="text" name="perdaApetite_semanas" size="2" maxlength="2" onBlur="validarCampoNumerico(this)"/></td>
+
+			</tr>
+			
+			<!--    DOR TORACICA   -->
+
+			<tr class="par">
+				<td><script>document.write(tabFields[45][1]);</script>:</td>
+				<td><input name="dorToracica" type="radio" value="sim" onClick="dorToracica_semanas.disabled = false; dorToracica_semanas.value=''; dorToracica_semanas.focus();"> Sim</td>
+				<td><input name="dorToracica" type="radio" value="nao" onClick="dorToracica_semanas.disabled = true;"> N&atilde;o</td>
+
+				<td><input name="dorToracica" type="radio" value="ignorado" onClick="dorToracica_semanas.disabled = true;"> Ignorado</td>
+				<td class="right"><script>document.write(tabFields[46][1]);</script>: <input type="text" name="dorToracica_semanas" size="2" maxlength="2" onBlur="validarCampoNumerico(this)"/></td>
+			</tr>
+
+			<tr>
+			<td colspan="5" style="text-align: center;">
+			<script>
+			function resultadoTeste()
+			{
+				totalPontos = 0; 
+				pontuacaoIdade()
+				pontuacaoSimples(getCheckedValue(document.check.hemoptise),6);
+				pontuacaoSimples(getCheckedValue(document.check.dorToracica),2);
+				pontuacaoSimples(getCheckedValue(document.check.sudorese),2);
+				pontuacaoSimples(getCheckedValue(document.check.febre),2);
+				pontuacaoSimples(getCheckedValue(document.check.dispneia),1);
+				pontuacaoSemanas(getCheckedValue(document.check.tosse),document.check.tosse_semanas.value);
+				pontuacaoSemanas(getCheckedValue(document.check.expectoracao),document.check.expectoracao_semanas.value);
+				pontosEmagrecimento(document.check.pesoAtual.value,document.check.pesoHabitual.value);
+				diagnostico();
+			}
+			</script>
+
+			<br /><input name="result" type="button" value="Resultado" onClick="resultadoTeste()">&nbsp;&nbsp;&nbsp;
+			Pontos:&nbsp;<input name="pontuacao" type="text" size="2" readOnly="true">
+			<br /><br /></td>
+
+			</tr>
+			<tr bgcolor="red" class="bold">
+				<td colspan="5" style="text-align: center; color:white">ATEN&Ccedil;&Atilde;O!!! CASO MUDE UMA DAS OP&Ccedil;&Otilde;ES ACIMA OU O VALOR DOS PESOS
+															"ATUAL" OU "HABITUAL",<br /> PRESSIONAR NOVAMENTE O BOT&Atilde;O "RESULTADO".
+															DO CONTR&Aacute;RIO, A PONTUA&Ccedil;&Atilde;O ESTAR&Aacute; ERRADA.
+				</td>
+
+			</tr>
+		
+			<tr>
+				<td colspan="5" class="label"><b>Hist&oacute;ria de tuberculose</b></td> 
+			</tr> 
+			
+			<!--   TRATAMENTO TB ANTERIOR   -->
+
+			<tr class="impar">
+				<td><script>document.write(tabFields[48][1]);</script>:</td>
+
+				<td><input name="tratamentoAnteriorTB" type="radio" value="sim" onClick="exibeLinhaOculta('tabelaSintomas', 38);exibeLinhaOculta('tabelaSintomas', 39);exibeLinhaOculta('tabelaSintomas', 40);mes_diagnostico.focus(); mes_diagnostico.value = ''; ano_diagnostico.value = '';"> Sim</td>
+				<td><input name="tratamentoAnteriorTB" type="radio" value="nao" onClick="ocultaLinha('tabelaSintomas', 38);ocultaLinha('tabelaSintomas', 39);ocultaLinha('tabelaSintomas', 40); mes_diagnostico.value = ''; ano_diagnostico.value = '';"> N&atilde;o</td>
+				<td><input name="tratamentoAnteriorTB" type="radio" value="ignorado" onClick="ocultaLinha('tabelaSintomas', 38);ocultaLinha('tabelaSintomas', 39);ocultaLinha('tabelaSintomas', 40); mes_diagnostico.value = ''; ano_diagnostico.value = '';"> Ignorado</td>
+				<td></td>
+			</tr>
+
+			<!-- Data do diagnostico de TB no passado -->
+			<tr class="impar">
+				<td><script>document.write(tabFields[49][1]);</script>:</td>
+				<td colspan="2"><input name="mes_diagnostico" type="text" size="2" maxlength="2" onKeyUp="if(this.value.length == 2)this.blur();" onChange="if(validarMes(this))ano_diagnostico.focus();"> / <input name="ano_diagnostico" type="text" size="4" maxlength="4" onKeyUp="if(this.value.length == 4)this.blur();" onChange="validarAno(this);"  onBlur="validarDataExame(0,mes_diagnostico,ano_diagnostico); validarDiagnosticoAnterior(ano_diagnostico, ano_nascimento)" > (mm/aaaa)</td>
+				<td><input type="checkbox" onClick="if(this.checked){mes_diagnostico.disabled=true; mes_diagnostico.value='';} else{mes_diagnostico.disabled=false; mes_diagnostico.focus(); mes_diagnostico.value='';}"> Ignorar m&ecirc;s</td>
+
+				<td><input type="checkbox" onClick="if(this.checked){ano_diagnostico.disabled=true; mes_diagnostico.disabled=true; ano_diagnostico.value = '';} else{ano_diagnostico.disabled=false; ano_diagnostico.focus(); ano_diagnostico.value = '';}"> Ignorar ano</td>
+			</tr>
+			
+			<!-- DESFECHO -->
+			<tr class="impar">
+				<td><script>document.write(tabFields[51][1]);</script>:</td>
+				<td><input name="TBdesfecho" type="radio" value="cura"> Cura</td>
+
+				<td><input name="TBdesfecho" type="radio" value="falencia"> Fal&ecirc;ncia</td>
+				<td><input name="TBdesfecho" type="radio" value="ignorado"> Ignorado</td>
+				<td></td>
+			</tr>
+			<tr class="impar">
+				<td></td>
+
+				<td><input name="TBdesfecho" type="radio" value="abandono"> Abandono</td>
+				<td colspan="3"><input name="TBdesfecho" type="radio" value="completou"> Completou tratamento (sem ex. escarro)</td>
+			</tr>
+			
+			<tr>
+				<td colspan="5" class="label"><b>Nos &uacute;ltimos 2 anos:</b></td>
+			</tr>
+
+	
+			<!--    INTERNACAO HOSPITALAR  -->
+			<tr class="impar">
+				<td><script>document.write(tabFields[52][1]);</script>:</td>
+				<td><input name="internado" type="radio" value="sim"> Sim</td>
+				<td><input name="internado" type="radio" value="nao"> N&atilde;o</td>
+
+				<td><input name="internado" type="radio" value="ignorado"> Ignorado</td>
+				<td></td>
+			</tr>
+			
+			<!--    PRISAO  -->
+			<tr class="par">
+				<td><script>document.write(tabFields[53][1]);</script>:</td>
+				<td><input name="prisao" type="radio" value="sim"> Sim</td>
+
+				<td><input name="prisao" type="radio" value="nao"> N&atilde;o</td>
+				<td><input name="prisao" type="radio" value="ignorado"> Ignorado</td>
+				<td></td>
+			</tr>
+			
+			<!--   DELEGACIA  -->
+			<tr class="impar">
+
+				<td><script>document.write(tabFields[54][1]);</script>:</td>
+				<td><input name="delegacia" type="radio" value="sim"> Sim</td>
+				<td><input name="delegacia" type="radio" value="nao"> N&atilde;o</td>
+				<td><input name="delegacia" type="radio" value="ignorado"> Ignorado</td>
+
+				<td></td>
+			</tr>
+			
+			<!--   CONTATO COM TBP  --> 
+			<tr class="par" >
+				<td><script>document.write(tabFields[55][1]);</script>:</td>
+				<td><input name="contatoTBP" type="radio" value="sim" onClick="exibeLinhaOculta('tabelaSintomas', 46);exibeLinhaOculta('tabelaSintomas', 47);exibeLinhaOculta('tabelaSintomas', 48);exibeLinhaOculta('tabelaSintomas', 49);exibeLinhaOculta('tabelaSintomas', 50);"> Sim</td>
+				<td><input name="contatoTBP" type="radio" value="nao" onClick="ocultaLinha('tabelaSintomas', 46);ocultaLinha('tabelaSintomas', 47);ocultaLinha('tabelaSintomas', 48);ocultaLinha('tabelaSintomas', 49);ocultaLinha('tabelaSintomas', 50);"> N&atilde;o</td>
+
+				<td><input name="contatoTBP" type="radio" value="ignorado" onClick="ocultaLinha('tabelaSintomas', 46);ocultaLinha('tabelaSintomas', 47);ocultaLinha('tabelaSintomas', 48);ocultaLinha('tabelaSintomas', 49);ocultaLinha('tabelaSintomas', 50);"> Ignorado</td>
+				<td></td>
+			</tr>
+			
+			<!--   MORAVA COM VOCE  -->
+			<tr class="par" >
+				<td><script>document.write(tabFields[56][1]);</script>:</td>
+				<td><input name="contatoTBPmoravaJunto" type="radio" value="sim"> Sim</td>
+
+				<td><input name="contatoTBPmoravaJunto" type="radio" value="nao"> N&atilde;o</td>
+				<td><input name="contatoTBPmoravaJunto" type="radio" value="ignorado"> Ignorado</td>
+				<td></td>
+			</tr>
+			
+			<!--   TRABALHAVA COM VOCE  -->
+			<tr class="par">
+
+				<td><script>document.write(tabFields[57][1]);</script>:</td>
+				<td><input name="contatoTBPtrabalhavaJunto" type="radio" value="sim"> Sim</td>
+				<td><input name="contatoTBPtrabalhavaJunto" type="radio" value="nao"> N&atilde;o</td>	
+				<td><input name="contatoTBPtrabalhavaJunto" type="radio" value="ignorado"> Ignorado</td>
+				<td></td>
+
+			</tr>
+			
+			<!--   AMIGO PARENTE COLEGA  -->
+			<tr class="par">
+				<td class="wrap"><script>document.write(tabFields[58][1]);</script>:</td>
+				<td><input name="contatoTBPamigoParenteColega" type="radio" value="sim"> Sim</td>
+				<td><input name="contatoTBPamigoParenteColega" type="radio" value="nao"> N&atilde;o</td>
+
+				<td><input name="contatoTBPamigoParenteColega" type="radio" value="ignorado"> Ignorado</td>
+				<td></td>
+			</tr>
+			
+			<!--   CONTATO MENOR DO QUE 3 ANOS  -->
+			<tr class="par" >
+				<td class="wrap"><script>document.write(tabFields[59][1]);</script>:</td>
+				<td><input name="contatoTBPmenorQue3Anos" type="radio" value="sim"> Sim</td>
+
+				<td><input name="contatoTBPmenorQue3Anos" type="radio" value="nao"> N&atilde;o</td>
+				<td><input name="contatoTBPmenorQue3Anos" type="radio" value="ignorado"> Ignorado</td>
+				<td></td>
+			</tr>
+			
+			<!--   ESPECIFICAR CONTATO  -->
+			<tr class="par">
+
+				<td class="wrap"><script>document.write(tabFields[60][1]);</script> (pode marcar mais de um):</td>
+				<td><input name="contatoTBPqual" type="checkbox" value="casa"> Casa</td>
+				<td><input name="contatoTBPqual" type="checkbox" value="trabalho"> Trabalho</td>
+				<td><input name="contatoTBPqual" type="checkbox" value="social"> Social</td>
+
+				<td></td>
+			</tr>
+			
+			<!--  FUMA   --> 
+			<tr class="impar">
+				<td><script>document.write(tabFields[61][1]);</script>:</td>
+				<td><input name="fuma" type="radio" value="fuma_atualmente" onClick="exibeLinhaOculta('tabelaSintomas', 52);exibeLinhaOculta('tabelaSintomas', 53);fumaQtd.focus();"> Sim</td>	
+				<td><input name="fuma" type="radio" value="ja_fumou" onClick="exibeLinhaOculta('tabelaSintomas', 52);exibeLinhaOculta('tabelaSintomas', 53);fumaQtd.focus();"> J&aacute; Fumou</td>
+
+				<td><input name="fuma" type="radio" value="nunca" onClick="ocultaLinha('tabelaSintomas', 52);ocultaLinha('tabelaSintomas', 53);"> Nunca</td>		
+				<td></td>
+			</tr>
+			
+			<!-- NUMERO DE CIGARROS  -->
+
+			<tr class="impar">
+				<td><script>document.write(tabFields[62][1]);</script>:</td>
+				<td><input name="fumaQtd" type="text" size="2" maxlength="2" onBlur="validarCampoNumerico(this);"></td>
+
+				<td></td>
+				<td colspan="2"></td>
+			</tr>
+			
+			<!-- ANOS FUMANDO  -->
+
+			<tr class="impar">
+				<td><script>document.write(tabFields[63][1]);</script>:</td>
+				<td><input name="fumaTempo" type="text" size="2" maxlength="2" onBlur="validarCampoNumerico(this);validarTempo(this);"></td>
+
+				<td></td>
+				<td colspan="2"></td>
+			</tr>
+			
+			<!--  BEBIDA   --> 
+
+			<tr class="par">
+				<td><script>document.write(tabFields[64][1]);</script>:</td>
+				<td><input name="bebida" type="radio" value="cerveja" onClick="exibeLinhaOculta('tabelaSintomas', 56);exibeLinhaOculta('tabelaSintomas', 57);exibeLinhaOculta('tabelaSintomas', 58);exibeLinhaOculta('tabelaSintomas', 59);exibeLinhaOculta('tabelaSintomas', 60);cage.disabled = false "> Cerveja</td>
+
+				<td><input name="bebida" type="radio" value="vinho" onClick="exibeLinhaOculta('tabelaSintomas', 56);exibeLinhaOculta('tabelaSintomas', 57);exibeLinhaOculta('tabelaSintomas', 58);exibeLinhaOculta('tabelaSintomas', 59);exibeLinhaOculta('tabelaSintomas', 60);cage.disabled = false "> Vinho</td>
+				<td><input name="bebida" type="radio" value="whisky" onClick="exibeLinhaOculta('tabelaSintomas', 56);exibeLinhaOculta('tabelaSintomas', 57);exibeLinhaOculta('tabelaSintomas', 58);exibeLinhaOculta('tabelaSintomas', 59);exibeLinhaOculta('tabelaSintomas', 60);cage.disabled = false "> Whisky</td>
+				<td></td>
+			</tr>
+			<tr class="par">
+				<td></td>
+				<td><input  name="bebida" type="radio" value="cachaca" onClick="exibeLinhaOculta('tabelaSintomas', 56);exibeLinhaOculta('tabelaSintomas', 57);exibeLinhaOculta('tabelaSintomas', 58);exibeLinhaOculta('tabelaSintomas', 59);exibeLinhaOculta('tabelaSintomas', 60);cage.disabled = false ;"> Cacha&ccedil;a</td>
+
+				<td><input  name="bebida" type="radio" value="outras" onClick="exibeLinhaOculta('tabelaSintomas', 56);exibeLinhaOculta('tabelaSintomas', 57);exibeLinhaOculta('tabelaSintomas', 58);exibeLinhaOculta('tabelaSintomas', 59);exibeLinhaOculta('tabelaSintomas', 60);cage.disabled = false ;"> Outras</td>
+				<td  colspan="2"><input  name="bebida" type="radio" value="nenhuma" onClick="ocultaLinha('tabelaSintomas', 56);ocultaLinha('tabelaSintomas', 57);ocultaLinha('tabelaSintomas', 58);ocultaLinha('tabelaSintomas', 59);ocultaLinha('tabelaSintomas', 60);cage.disabled = true;cage.value=''; "> Nenhuma</td>
+			</tr>
+			
+			<!--  FACILIDADE EM FAZER AMIZADES   -->
+
+			<tr class="par">
+				<td colspan="2"><script>document.write(tabFields[65][1]);</script>:</td>
+
+				<td><input name="facilidadeFazerAmizades" type="radio" value="sim" onClick="definirCage();"> Sim</td>
+				<td><input name="facilidadeFazerAmizades" type="radio" value="nao" onClick="definirCage();"> N&atilde;o</td>
+				<td></td>
+			</tr>
+			
+			<!--  DIMINUIR BEBIDA   -->
+
+			<tr class="par">
+
+				<td colspan="2"><script>document.write(tabFields[66][1]);</script>:</td>
+				<td><input name="diminuirQtdBebida" type="radio" value="sim" onClick="definirCage();"> Sim</td>
+				<td><input name="diminuirQtdBebida" type="radio" value="nao" onClick="definirCage();"> N&atilde;o</td>
+				<td></td>
+			</tr>
+
+			
+			<!--  CRITICA BEBIDA   -->
+			<tr class="par">
+				<td colspan="2"><script>document.write(tabFields[67][1]);</script>:</td>
+				<td><input name="criticaModoBeber" type="radio" value="sim" onClick="definirCage();"> Sim</td>
+				<td><input name="criticaModoBeber" type="radio" value="nao" onClick="definirCage();"> N&atilde;o</td>
+
+				<td></td>
+			</tr>
+			
+			<!--  COSTUMA BEBER DE MANHA  -->
+			<tr class="par">
+				<td colspan="2"><script>document.write(tabFields[68][1]);</script>:</td>
+				<td><input name="bebidaManha" type="radio" value="sim" onClick="definirCage();"> Sim</td>
+				<td><input name="bebidaManha" type="radio" value="nao" onClick="definirCage();"> N&atilde;o</td>
+
+				<td></td>
+			</tr>
+			
+			<!--  SENTE CULPA PELA MANEIRA QUE BEBE -->
+			<tr class="par">
+				<td colspan="2"><script>document.write(tabFields[69][1]);</script>:</td>
+				<td><input name="culpadoManeiraBeber" type="radio" value="sim" onClick="definirCage();"> Sim</td>
+				<td><input name="culpadoManeiraBeber" type="radio" value="nao" onClick="definirCage();"> N&atilde;o</td>
+
+				<td></td>
+			</tr>
+			
+			<!--  CAGE  -->
+			<tr class="par">
+				<td colspan="5" style="text-align: center">
+				<script>document.write(tabFields[70][1]);</script>: <input name="cage" type="text" size="8" readOnly="true">
+				</td>
+			</tr>
+
+			<!-- DESFECHO CONSULTA INICIAL -->
+			<tr class="impar">
+				<td><script>document.write(tabFields[94][1])</script>:</td>
+				<td colspan="4"><input name="desfechoConsultaInicial" type="radio" value="ambulatorio_tb"> Encaminhado para atendimento no ambulat&oacute;rio de TB
+					<p><input name="desfechoConsultaInicial" type="radio" value="ambulatorio_pneumologia" onClick="outra_esp.disabled = true; outro_desfecho.disabled = true; outro_desfecho.value = outra_esp.value = '';"> Encaminhado para atendimento no ambulat&oacute;rio de pneumologia</p>
+
+					<p><input name="desfechoConsultaInicial" type="radio" value="outra_especialidade" onClick="outra_esp.disabled = false; outro_desfecho.disabled = true; outro_desfecho.value = outra_esp.value = '';"> Encaminhamento para atendimento em outra especialidade: <input name="outra_esp" type="text" maxlength="100" size="20" disabled='true'></p>
+					<p><input name="desfechoConsultaInicial" type="radio" value="internacao" onClick="outra_esp.disabled = true; outro_desfecho.disabled = true; outro_desfecho.value = outra_esp.value = '';"> Encaminhamento para interna&ccedil;&atilde;o</p>
+					<p><input name="desfechoConsultaInicial" type="radio" value="outros" onClick="outro_desfecho.disabled = false; outra_esp.disabled = true; outro_desfecho.value = outra_esp.value = '';"> Outros: <input name="outro_desfecho" type="text" maxlength="200" size="40" disabled="true"></p>
+					<p><input name="desfechoConsultaInicial" type="radio" value="ignorado" onClick="outra_esp.disabled = true; outro_desfecho.disabled = true; outro_desfecho.value = outra_esp.value = '';"> Ignorado</p>
+
+				</td>
+			</tr>
+
+	
+			<!-- ORIENTACOES -->
+			<tr class="par">
+				<td colspan="5">
+					<p><b>Se o paciente referir tosse por mais de duas semanas, inclu&iacute;-lo no projeto TB Adapt:</b></p>
+					<ul>
+
+						<li>Coletar escarro simples (2 amostras);
+						<li>Fazer Prova tubercul&iacute;nica;
+						<li>Solicitar RXT (N&atilde;o solicitar se estiver gr&aacute;vida ou com suspeita de gravidez).</li>
+					</ul>
+					<p><b>Se o paciente n&atilde;o referir tosse ou refer&iacute;-la por menos de duas semanas, n&atilde;o inclu&iacute;-lo no projeto TB Adapt:</b></p>
+
+					<ul>
+						<li>Coletar escarro simples (2 amostras);
+						<li>Solicitar RXT (N&atilde;o solicitar se estiver gr&aacute;vida ou com suspeita de gravidez).</li>
+					</ul>
+				</td>
+			</tr>
+	
+			<!-- INCLUSAO -->
+
+			
+			<tr class="impar">
+				<td><script>document.write(tabFields[95][1])</script>:</td>
+				<td><input name="inclusao" type="radio" value="sim" onClick="exibeLinhaOculta('tabelaSintomas', 65);exibeLinhaOculta('tabelaSintomas', 66);exibeLinhaOculta('tabelaSintomas', 67);exibeLinhaOculta('tabelaSintomas', 68);exibeLinhaOculta('tabelaSintomas', 69);exibeLinhaOculta('tabelaSintomas', 70); exibeLinhaOculta('tabelaSintomas', 71);exibeLinhaOculta('tabelaSintomas', 72);exibeLinhaOculta('tabelaSintomas', 73);"> Sim</td>
+				<td><input name="inclusao" type="radio" value="nao" onClick="ocultaLinha('tabelaSintomas', 65);ocultaLinha('tabelaSintomas', 66);ocultaLinha('tabelaSintomas', 67);ocultaLinha('tabelaSintomas', 68);ocultaLinha('tabelaSintomas', 69);ocultaLinha('tabelaSintomas', 70);ocultaLinha('tabelaSintomas', 71);ocultaLinha('tabelaSintomas', 72);ocultaLinha('tabelaSintomas', 73);"> N&atilde;o</td>
+				<td><input name="inclusao" type="radio" value="ignorado" onClick="ocultaLinha('tabelaSintomas', 65);ocultaLinha('tabelaSintomas', 66);ocultaLinha('tabelaSintomas', 67);ocultaLinha('tabelaSintomas', 68);ocultaLinha('tabelaSintomas', 69);ocultaLinha('tabelaSintomas', 70);ocultaLinha('tabelaSintomas', 71);ocultaLinha('tabelaSintomas', 72);ocultaLinha('tabelaSintomas', 73);"> Ignorado</td>
+
+				<td></td>
+			</tr>
+			
+			<!-- CRITERIOS DE INCLUSAO -->
+			<tr class="par">
+				<td><script>document.write(tabFields[96][1]);</script>:</td>
+				<td colspan="4"><p><input name="criteriosInclusao" type="checkbox" value="tosse"> tosse por mais de duas semanas +</p>
+								<p><input name="criteriosInclusao" type="checkbox" value="Termo de Consentimento assinado em:" onClick="if(this.checked){dia_termoConsentimento.disabled=false;mes_termoConsentimento.disabled=false;ano_termoConsentimento.disabled=false}else{dia_termoConsentimento.disabled=true;mes_termoConsentimento.disabled=true;ano_termoConsentimento.disabled=true;}"> termo de consentimento assinado em <input name="dia_termoConsentimento" type="text" maxlength="2" size="2" disabled="true" onKeyUp="if(this.value.length == 2)if(validarDia(this))mes_termoConsentimento.focus();" onChange="if(validarDia(this))mes_termoConsentimento.focus();"> / <input name="mes_termoConsentimento" type="text" maxlength="2" size="2" disabled="true" onKeyUp="if(this.value.length == 2)if(validarMes(this))ano_termoConsentimento.focus();" onChange="if(validarMes(this))ano_termoConsentimento.focus();"> / <input name="ano_termoConsentimento" type="text" maxlength="4" size="4" disabled="true" onKeyUp="if(this.value.length == 4)validarAno(this);" onChange="validarAno(this);" onBlur="validarQualquerData(dia_termoConsentimento,mes_termoConsentimento,ano_termoConsentimento);validarDataExame(dia_termoConsentimento,mes_termoConsentimento,ano_termoConsentimento)"></p></td>
+
+			</tr>
+
+	
+			<!--  COLETA  -->
+			<tr class="impar">
+				<td colspan="5"><script>document.write(tabFields[97][1]);</script></td>
+			</tr>
+			<tr class="impar">
+				<td><script>document.write(tabFields[98][1]);</script>:&nbsp;<input name="dia_coleta1" type="text" maxlength="2" size="2" onKeyUp="if(this.value.length == 2)if(validarDia(this))mes_coleta1.focus();" onChange="if(validarDia(this))mes_coleta1.focus();">/<input type="text" name="mes_coleta1" maxlength="2" size="2" onKeyUp="if(this.value.length == 2)if(validarMes(this))ano_coleta1.focus();" onChange="if(validarMes(this))ano_coleta1.focus();">/<input type="text" name="ano_coleta1" maxlength="4" size="4" onKeyUp="if(this.value.length == 4)validarAno(this);" onChange="validarAno(this);" onBlur="validarQualquerData(dia_coleta1,mes_coleta1,ano_coleta1);validarDataExame(dia_coleta1,mes_coleta1,ano_coleta1)"></td>
+
+				<td><input type="radio" name="coleta1" value="espontaneo"> Espont&acirc;neo</input></td>
+				<td><input type="radio" name="coleta1" value="induzido"> Induzido</input></td>
+				<td><input type="radio" name="coleta1" value="lba"> LBA</input></td>
+				<td><input type="radio" name="coleta1" value="rna"> RNA</input></td>
+
+			</tr>
+			<tr class="impar">
+				<td><script>document.write(tabFields[99][1]);</script>:&nbsp;<input name="dia_coleta2" type="text" maxlength="2" size="2" onKeyUp="if(this.value.length == 2)if(validarDia(this))mes_coleta2.focus();" onChange="if(validarDia(this))mes_coleta2.focus();">/<input type="text" name="mes_coleta2" maxlength="2" size="2" onKeyUp="if(this.value.length == 2)if(validarMes(this))ano_coleta2.focus();"onChange="if(validarMes(this))ano_coleta2.focus();">/<input type="text" name="ano_coleta2" maxlength="4" size="4" onKeyUp="if(this.value.length == 4)validarAno(this);" onChange="validarAno(this);" onBlur="validarQualquerData(dia_coleta2,mes_coleta2,ano_coleta2);validarDataExame(dia_coleta2,mes_coleta2,ano_coleta2)"></td>
+				<td><input type="radio" name="coleta2" value="espontaneo"> Espont&acirc;neo</input></td>
+				<td><input type="radio" name="coleta2" value="induzido"> Induzido</input></td>
+
+				<td><input type="radio" name="coleta2" value="lba"> LBA</input></td>
+				<td><input type="radio" name="coleta2" value="rna"> RNA</input></td>
+			</tr>
+			
+			<!--  CICATRIZ BCG  -->
+			<tr class="par">
+				<td><script>document.write(tabFields[100][1]);</script>:</td>
+
+				<td><input name="cicatrizBCG" type="radio" value="sim"> Sim</td>
+				<td><input name="cicatrizBCG" type="radio" value="nao"> N&atilde;o</td>
+				<td><input name="cicatrizBCG" type="radio" value="ignorado"> Ignorado</td>
+				<td></td>
+			</tr>
+
+			
+			<!--  RESULTADO DA LEITURA  --> 
+			<tr class="impar">
+				<td><script>document.write(tabFields[101][1]);</script>:</td>
+				<td colspan="2" style="text-align:center">&nbsp;&nbsp;<input  name="resultadoLeitura" type="text" maxlength="10" size="3" onBlur="if(resultadoLeitura.value != 'NA')validarCampoNumerico(this);"/>&nbsp;mm de endura&ccedil;&atilde;o</td>
+				<td colspan="2"><input type="checkbox"  onClick="if(this.checked){resultadoLeitura.value = 'NA';dia_aplicacao.value = '';mes_aplicacao.value = '';ano_aplicacao.value = '';dia_leitura.value = '';mes_leitura.value = '';ano_leitura.value = '';PTprimeiraDose.value='';dia_aplicacao.disabled = mes_aplicacao.disabled = ano_aplicacao.disabled = dia_leitura.disabled = mes_leitura.disabled = ano_leitura.disabled = PTprimeiraDose.disabled = true;resultadoLeitura.readOnly = true;ocultaLinha('tabelaSintomas', 71);ocultaLinha('tabelaSintomas', 72);ocultaLinha('tabelaSintomas', 73);} else {document.check.resultadoLeitura.readOnly = false; resultadoLeitura.value = ''; dia_aplicacao.value = '';mes_aplicacao.value = '';ano_aplicacao.value = '';dia_leitura.value = '';mes_leitura.value = '';ano_leitura.value = '';PTprimeiraDose.value='';dia_aplicacao.disabled = mes_aplicacao.disabled = ano_aplicacao.disabled = dia_leitura.disabled = mes_leitura.disabled = ano_leitura.disabled = PTprimeiraDose.disabled = false;resultadoLeitura.focus(); exibeLinhaOculta('tabelaSintomas', 71);exibeLinhaOculta('tabelaSintomas', 72);exibeLinhaOculta('tabelaSintomas', 73);}">Ignorado</input></td>
+			</tr>
+
+			
+			<!-- APLICACAO PROVA TUBERCULONICA    -->
+
+			<tr class="impar">
+				<td><script>document.write(tabFields[102][1]);</script>:</td>
+				<td colspan="4"><input name="dia_aplicacao" type="text" size="2" maxlength="2" onKeyUp="if(this.value.length == 2)if(validarDia(this))mes_aplicacao.focus();" onChange="if(validarDia(this))mes_aplicacao.focus();"> / <input name="mes_aplicacao" type="text" size="2" maxlength="2" onKeyUp="if(this.value.length == 2)if(validarMes(this))ano_aplicacao.focus();" onChange="if(validarDia(this))mes_aplicacao.focus();"> / <input name="ano_aplicacao" type="text" size="4" maxlength="4" onKeyUp="if(this.value.length == 4)validarAno(this);" onChange="validarAno(this);" onBlur="validarQualquerData(dia_aplicacao,mes_aplicacao,ano_aplicacao);validarDataExame(dia_aplicacao,mes_aplicacao,ano_aplicacao)"> (dd/mm/aaaa)
+			</tr>
+
+			
+			<!--    DATA DA LEITURA   -->
+			<tr class="impar">
+				<td><script>document.write(tabFields[103][1]);</script>:</td>
+				<td colspan="4"><input name="dia_leitura" type="text" size="2" maxlength="2" onKeyUp="if(this.value.length == 2)this.blur();" onChange="if(validarDia(this))mes_leitura.focus();"> / <input name="mes_leitura" type="text" size="2" maxlength="2" onKeyUp="if(this.value.length == 2)this.blur();" onChange="if(validarMes(this))ano_leitura.focus();"> / <input name="ano_leitura" type="text" size="4" maxlength="4" onKeyUp="if(this.value.length == 4)this.blur();" onChange="validarAno(this);" onBlur="validarQualquerData(dia_leitura,mes_leitura,ano_leitura);validarDataExame(dia_leitura,mes_leitura,ano_leitura)"> (dd/mm/aaaa)</td>
+			</tr>
+
+			
+			<!--  PT PRIMEIRA DOSE  -->
+			<tr class="impar">
+				<td><script>document.write(tabFields[104][1]);</script>:</td>
+				<td colspan="4"><input type="text" name="PTprimeiraDose" size="40" maxlength="80" /></td>
+			</tr>
+
+			<!-- Observacoes -->
+
+			<tr class="par">
+
+				<td colspan="1"><script>document.write(tabFields[105][1]);</script>:</td>
+				<td colspan="4"><div center><textarea name="observacoes" rows="5" cols="70"></textarea></div></td>
+			</tr>
+
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+		
+			<tr>
+
+				<td colspan="2" style="text-align:center">Avaliado por: <input name="avaliador" type="text" size="25"></td>
+				<td colspan="3" style="text-align:center">Cadastrado por: <input name="cadastradoPor" type="text" readonly="readonly" value="anonimo" size="25"></td>
+			</tr>
+			
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+			
+			<!--    ENVIAR / LIMPAR     -->
+			<tr>
+
+				<td><input value="Limpar Formul&aacute;rio" type="reset" onClick="inicializaOcultos('tabelaSintomas')"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td style="text-align:right"><input type="submit" value="Enviar Formul&aacute;rio"></td>
+			</tr>
+		</table>
+		</div>
+	</form>
+
+	</td>
+
+</tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<usuarios>
+	<usuario>
+		<username>guadalupe</username>
+		<senha>guadalupe</senha>
+		<grupo>medico</grupo>
+	</usuario>
+	<usuario>
+		<username>enfermeiro</username>
+		<senha>enfermeiro</senha>
+		<grupo>enfermeiro</grupo>
+	</usuario>
+	<usuario>
+		<username>atendente</username>
+		<senha>atendente</senha>
+		<grupo>atendente</grupo>
+	</usuario>
+	<usuario>
+		<username>roberta</username>
+		<senha>roberta</senha>
+		<grupo>atendente</grupo>
+	</usuario>
+	<usuario>
+		<username>digitador</username>
+		<senha>digitador</senha>
+		<grupo>digitador</grupo>
+	</usuario>
+		<usuario>
+		<username>medico</username>
+		<senha>medico</senha>
+		<grupo>medico</grupo>
+	</usuario>
+</usuarios>
