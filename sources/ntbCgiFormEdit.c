@@ -58,7 +58,10 @@ int main (void)/*(int argc,char**argv)*/
 	if(username == NULL)
 		username = USUARIO_ANONIMO;
 	
-	cgi_init_headers();
+	// cgi_init_headers();
+	// Funcao criada por Felipe para fazer com que o browser interprete o
+	// HTML como utf-8.
+	cgi_init_headers_with_content_type("text/html; charset=utf-8");
 
 	/* HTML */
 	if(strcmp(username,"digitador") == 0)

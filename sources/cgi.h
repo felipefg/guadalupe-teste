@@ -45,6 +45,7 @@ extern int cgi_display_errors;
 
 // General purpose cgi functions
 extern void cgi_init_headers(void);
+extern void cgi_init_headers_with_content_type(const char *contentType);
 extern void cgi_redirect(char *url);
 extern void cgi_fatal(const char *error);
 extern char *cgi_unescape_special_chars(char *str);

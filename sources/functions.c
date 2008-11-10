@@ -16,10 +16,10 @@ void showMenu (char *option, char *username)
 	printf("		<tr>");
 
 	printf("<td class=\"fl\" onmouseover=\"showmenu('forms')\" onmouseout=\"hidemenu('forms')\">\n");
-	printf("<a href=\"#\">Formulários</a><br />\n");
+	printf("<a href=\"#\">Formul&aacute;rios</a><br />\n");
 	printf("<ul class=\"option\" id=\"forms\">\n");
 	printf("	<li><a href=\"triagem.cgi?uid=%s\" target=\"_parent\">Triagem</a></li>\n", username);
-	printf("	<li><a href=\"busca.cgi?uid=%s\" target=\"_parent\">Outros Formulários</a></li>\n",username);
+	printf("	<li><a href=\"busca.cgi?uid=%s\" target=\"_parent\">Outros Formul&aacute;rios</a></li>\n",username);
 	printf("</ul>\n");
 	printf("</td>\n");
 
