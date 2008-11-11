@@ -582,7 +582,7 @@ function validarMinuto(campo)
 
 function validarTempo(campo)
 {
-	if(document.check.idade.value < campo.value)
+	if(parseInt(document.check.idade.value) < parseInt(campo.value))
 	{
 		alert("O valor deve ser menor do que a idade do paciente.");
 		campo.focus();
