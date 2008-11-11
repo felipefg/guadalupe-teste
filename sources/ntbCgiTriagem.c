@@ -1166,7 +1166,7 @@ printf ("\n");
 printf ("	<!--onSubmit=\"return enviar()\"-->\n");
 printf ("\n");
 printf ("	<!--------------------------------------------------------- INICIO DO FORMULARIO ------------------------------------------------------------------->\n");
-printf ("	<form name=\"check\" id=\"form\" action=\"\" method=\"post\" onSubmit=\"return validar_triagem(this)\">\n");
+printf ("	<form name=\"check\" id=\"form\" action=\"addPatient.cgi\" method=\"post\" onSubmit=\"return validar_triagem(this)\">\n");
 printf ("\n");
 printf ("		<input type=\"hidden\" name=\"form\" value=\"triagem\" />\n");
 printf ("		<div align=\"center\">\n");
