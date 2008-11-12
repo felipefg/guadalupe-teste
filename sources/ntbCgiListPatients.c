@@ -75,7 +75,7 @@ printf ("		}\n");
 printf ("		\n");
 printf ("		function displayResult()\n");
 printf ("		{\n");
-printf ("			xml = loadXMLDoc(\"xml/pacientesGuadalupe.xml\");\n");
+printf ("			xml = loadXMLDoc(\"xml/pacientesGuadalupe.xml?t=\" + new Date().getTime());\n");
 printf ("			xsl = loadXMLDoc(\"xml/xsl/listar.xsl\");\n");
 printf ("			\n");
 printf ("			// code for IE\n");
