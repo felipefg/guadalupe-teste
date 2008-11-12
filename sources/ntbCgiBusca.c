@@ -51,7 +51,7 @@ printf ("	<link rel=\"stylesheet\" type=\"text/css\" href=\"css/form.css\" />\n"
 printf ("	<script language=javascript src=\"js/funcoes.js\"></script>\n");
 printf ("	\n");
 printf ("	<style>\n");
-printf ("		iframe {width: 100%%%%; min-width: 800px; height:500px}\n");
+printf ("		iframe {width: 100%%; min-width: 800px; height:500px}\n");
 printf ("	</style>\n");
 printf ("\n");
 printf ("</head>\n");

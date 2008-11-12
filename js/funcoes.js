@@ -605,7 +605,7 @@ function validarQualquerData(campoDia,campoMes,campoAno)
 	
 	switch(mes)
 	{
-		case 01://janeiro
+		case 1://janeiro
 			if(dia<1 || dia>31)
 			{
 				alert("Dia invalidoChange:" +"\n" +"Use valores entre 01 e 31");
@@ -614,7 +614,7 @@ function validarQualquerData(campoDia,campoMes,campoAno)
 				return false;
 			}
 		break;
-		case 02://fevereiro
+		case 2://fevereiro
 			if((retcode=(ano-1900)%4 )== 0) // Se o ano e bissexto
 			{
 				if(dia<1 || dia>29)
@@ -634,7 +634,7 @@ function validarQualquerData(campoDia,campoMes,campoAno)
 					return false;
 				}
 		break;
-		case 03://marco
+		case 3://marco
 			if(dia<1 || dia>31)
 			{
 				alert("Dia invalido:" +"\n" +"Use valores entre 01 e 31");
@@ -643,7 +643,7 @@ function validarQualquerData(campoDia,campoMes,campoAno)
 				return false;
 			}
 		break;
-		case 04://abril
+		case 4://abril
 			if(dia<1 || dia>30)
 			{
 				alert("Dia invalido:" +"\n" +"Use valores entre 01 e 30");
@@ -652,7 +652,7 @@ function validarQualquerData(campoDia,campoMes,campoAno)
 				return false;
 			}
 		break;
-		case 05://maio
+		case 5://maio
 			if(dia<1 || dia>31)
 			{
 				alert("Dia invalido:" +"\n" +"Use valores entre 01 e 31");
@@ -661,7 +661,7 @@ function validarQualquerData(campoDia,campoMes,campoAno)
 				return false;
 			}
 		break;
-		case 06://junho
+		case 6://junho
 			if(dia<1 || dia>30)
 			{
 				alert("Dia invalido:" +"\n" +"Use valores entre 01 e 30");
@@ -670,7 +670,7 @@ function validarQualquerData(campoDia,campoMes,campoAno)
 				return false;
 			}
 		break;
-		case 07://julho
+		case 7://julho
 			if(dia<1 || dia>31)
 			{
 				alert("Dia invalido:" +"\n" +"Use valores entre 01 e 31");
@@ -679,7 +679,7 @@ function validarQualquerData(campoDia,campoMes,campoAno)
 				return false;
 			}
 		break;
-		case 08://agosto
+		case 8://agosto
 			if(dia<1 || dia>31)
 			{
 				alert("Dia invalido:" +"\n" +"Use valores entre 01 e 31");
@@ -688,7 +688,7 @@ function validarQualquerData(campoDia,campoMes,campoAno)
 				return false;
 			}
 		break;
-		case 09://setembro
+		case 9://setembro
 			if(dia<1 || dia>30)
 			{
 				alert("Dia invalido:" +"\n" +"Use valores entre 01 e 30");
